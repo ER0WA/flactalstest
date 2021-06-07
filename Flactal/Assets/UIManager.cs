@@ -67,7 +67,6 @@ public class UIManager : MonoBehaviour
             if (fractalMaterial[i] != null)
             {
                 _MaxIter = fractalMaterial[i].GetFloat("_MaxIter");
-                fractalMaterial[i].SetFloat("_MaxIter", 10.0f);
                 fractalMaterial[i].SetFloat("complexity", Mathf.Min(complicateSlider.value, 2.0f * PI));
                 fractalMaterial[i].SetFloat("test", test);
 

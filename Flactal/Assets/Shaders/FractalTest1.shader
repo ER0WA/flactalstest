@@ -13,7 +13,7 @@
 #include "UnityCG.cginc"
 
 
-	float complexity = 29.0;
+	float complexity = 100.0;
 	float test = 1.0;
 	float blueMode = -1.0;
 
@@ -26,7 +26,7 @@
 	mcoord.x = ((1.0 - i.uv.x)*3.5) - 2.5;
 	mcoord.y = (i.uv.y*2.0) - 1.0;
 	float iteration = 0.0;
-	float _MaxIter = 29.0;
+	float _MaxIter = 100.0;
 	const float PI = 3.14159;
 	float xtemp;
 	float4 color;
@@ -48,34 +48,61 @@
 	if (blueMode < 0.0)
 	{
 
-		color.b = clamp(complexity / PI + 0.2, 0.1, 1.0);
-		color.r = clamp((abs(fmod(val, 1.0) - 0.5)), 0.2, 0.6);
-		color.g = clamp((abs(fmod(val, 1.0) - 0.5)), 0.1, 0.2);
 
-		if (abs(fmod(iteration, 2.0)) < 1.0)
+		color.r = ((iteration % 20)*(iteration % 20)) / 361.0;
+		color.g = ((iteration % 20)*(iteration % 20)) / 361.0;
+		color.b = ((iteration % 20)*(iteration % 20)) / 361.0;
+
+
+		if (iteration % 20 > 10)
 		{
-			color.b = 0.0;
+			color.r = ((iteration % 20)*(iteration % 20)) / 361.0;
+			color.g = ((iteration % 20)*(iteration % 20)) / 361.0;
+			color.b = ((iteration % 20)*(iteration % 20)) / 361.0;
+			color.a = 1.0;
+		}
+
+		if (iteration > (_MaxIter * 0.9))
+		{
 			color.r = 0.0;
 			color.g = 0.0;
+			color.b = 0.0;
+			color.a = 0.0;
 		}
 	}
 	else
 	{
-
-
-		color.r = clamp((3.0*abs(fmod(2.0*val, 1.0) - 0.5)), 0.0, 1.0);
-		color.g = clamp((3.0*abs(fmod(2.0*val + (1.0 / 3.0), 1.0) - 0.5)), 0.0, 1.0);
-		color.b = clamp((3.0*abs(fmod(2.0*val - (1.0 / 3.0), 1.0) - 0.5)), 0.0, 1.0);
-	}
-	
-	
-	if (iteration < (_MaxIter / 7.0))
-	{
+		color.b = 0.0;
 		color.r = 0.0;
 		color.g = 0.0;
-		color.b = 0.0;
-		color.a = 0.0;
+
+
+		color.b = ((iteration % 20)*(iteration % 20)) / 361.0;
+
+
+		if (iteration % 20 > 10)
+		{
+			color.r = ((iteration % 20)*(iteration % 20)) / 361.0;
+			color.g = ((iteration % 20)*(iteration % 20)) / 361.0;
+			color.b = ((iteration % 20)*(iteration % 20)) / 361.0;
+			color.a = 1.0;
+		}
+
+		//color.r = clamp((3.0*abs(fmod(2.0*val, 1.0) - 0.5)), 0.0, 1.0);
+		//color.g = clamp((3.0*abs(fmod(2.0*val + (1.0 / 3.0), 1.0) - 0.5)), 0.0, 1.0);
+		//color.b = clamp((3.0*abs(fmod(2.0*val - (1.0 / 3.0), 1.0) - 0.5)), 0.0, 1.0);
+		if (iteration > (_MaxIter * 0.9))
+		{
+			color.r = 0.0;
+			color.g = 0.0;
+			color.b = 0.0;
+			color.a = 0.0;
+		}
 	}
+
+	
+	
+	
 
 	return color;
 	}
