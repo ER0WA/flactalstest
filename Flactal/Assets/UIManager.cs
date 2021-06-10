@@ -22,7 +22,30 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     Slider julia_Threshold;
-    
+
+    [SerializeField]
+    Triangle triangles;
+
+    [SerializeField]
+    Slider tri_Min;
+
+    [SerializeField]
+    Text min_tex;
+
+    [SerializeField]
+    Slider tri_Max;
+
+    [SerializeField]
+    Text max_tex;
+
+
+    [SerializeField]
+    Slider perfect;
+
+    [SerializeField]
+    Text perfect_text;
+
+
 
 
 
@@ -55,38 +78,70 @@ public class UIManager : MonoBehaviour
         julia_Threshold.value = 2.0f;
         juliaMaterial = JuliaRenderer.material;
 
+        tri_Min.maxValue = 1.0f;
+        tri_Min.minValue = 0.0f;
+        tri_Min.value = 0.1f;
+
+        tri_Max.maxValue = 5.0f;
+        tri_Max.minValue = tri_Min.maxValue;
+        tri_Max.value = 0.8f;
+
+
+        perfect.minValue = 0.0f;
+        perfect.maxValue = 1.0f;
+        perfect.value = 0.8f;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        for (int i = 0; i < 4; ++i)
+       /* if (FractalRenderer[0].gameObject.activeSelf == true)
         {
-            if (fractalMaterial[i] != null)
+
+            for (int i = 0; i < 4; ++i)
             {
-                _MaxIter = fractalMaterial[i].GetFloat("_MaxIter");
-                fractalMaterial[i].SetFloat("complexity", Mathf.Min(complicateSlider.value, 2.0f * PI));
-                fractalMaterial[i].SetFloat("test", test);
+                if (fractalMaterial[i] != null)
+                {
+                    _MaxIter = fractalMaterial[i].GetFloat("_MaxIter");
+                    fractalMaterial[i].SetFloat("complexity", Mathf.Min(complicateSlider.value, 2.0f * PI));
+                    fractalMaterial[i].SetFloat("test", test);
 
-                if (blueMode.isOn)
-                {
-                    fractalMaterial[i].SetFloat("blueMode", 1.0f);
-                }else
-                {
-                    fractalMaterial[i].SetFloat("blueMode", -1.0f);
+                    if (blueMode.isOn)
+                    {
+                        fractalMaterial[i].SetFloat("blueMode", 1.0f);
+                    } else
+                    {
+                        fractalMaterial[i].SetFloat("blueMode", -1.0f);
+                    }
+
                 }
-
             }
         }
 
 
         ///
-        juliaMaterial.SetInt("_MaxIteration", (int)juliaComplicateSlider.value);
-        juliaMaterial.SetInt("_Threshold", (int)julia_Threshold.value);
+        if (JuliaRenderer.gameObject.activeSelf == true)
+        {
+            juliaMaterial.SetInt("_MaxIteration", (int)juliaComplicateSlider.value);
+            juliaMaterial.SetInt("_Threshold", (int)julia_Threshold.value);
+        }
+        */
 
 
+        //if (triangles.gameObject.activeSelf == true)
+        //{
+            tri_Max.minValue = tri_Min.value;
+
+            triangles.RandMax = tri_Max.value;
+            triangles.RandMin = tri_Min.value;
+
+            max_tex.text = string.Concat("Maxaaa:", tri_Max.value.ToString());
+            min_tex.text = string.Concat("Min:", tri_Min.value.ToString());
+
+            triangles.imperfect = perfect.value;
+            perfect_text.text = string.Concat("完全性:", perfect.value.ToString());
+        //}
 
 
     }
