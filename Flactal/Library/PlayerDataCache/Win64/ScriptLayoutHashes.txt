@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/erowa/projects/Flactal_Git/flactalstest/Flactal実行ファイル/New Unity Project.exe
+C:/Users/erowa/projects/Flactal_Git/flactalstest/Flactal実行ファイル２/New Unity Project.exe
 SceneListBegin?
 Assets/main.unity
 SceneListEnd?

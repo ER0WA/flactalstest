@@ -96,7 +96,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       /* if (FractalRenderer[0].gameObject.activeSelf == true)
+       if (FractalRenderer[0].gameObject.activeSelf == true)
         {
 
             for (int i = 0; i < 4; ++i)
@@ -126,7 +126,7 @@ public class UIManager : MonoBehaviour
             juliaMaterial.SetInt("_MaxIteration", (int)juliaComplicateSlider.value);
             juliaMaterial.SetInt("_Threshold", (int)julia_Threshold.value);
         }
-        */
+        
 
 
         //if (triangles.gameObject.activeSelf == true)
